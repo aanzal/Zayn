@@ -22,7 +22,7 @@ from telegraph import upload_file
 async def telegraph(client, message):
     replied = message.reply_to_message
     if not replied:
-        await message.reply("Reply to a supported media file")
+        await message.reply("Reply to a supported media file.")
         return
     if not (
         (replied.photo and replied.photo.file_size <= 5242880)
@@ -52,15 +52,15 @@ async def telegraph(client, message):
         await message.reply(message, text=document)
     else:
         await message.reply(
-            f"<b>Link:-</b>\n\n <code>https://telegra.ph{response[0]}</code>",
+            f"<b>Link : </b>\n\n <code>https://telegra.ph{response[0]}</code>",
             quote=True,
             reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="open link", url=f"https://telegra.ph{response[0]}"),
-                    InlineKeyboardButton(text="share link", url=f"https://telegram.me/share/url?url=https://telegra.ph{response[0]}")
+                    InlineKeyboardButton(text="Open Link", url=f"https://telegra.ph{response[0]}"),
+                    InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://telegra.ph{response[0]}")
                 ],
-                [InlineKeyboardButton(text="✗ Close ✗", callback_data="close_data")]
+                [InlineKeyboardButton(text="Close", callback_data="close_data")]
             ]
         )
     )
