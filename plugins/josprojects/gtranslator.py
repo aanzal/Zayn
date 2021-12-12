@@ -32,7 +32,7 @@ async def left(client,message):
                                 [
                                     [
                                         InlineKeyboardButton(
-                                            text=f"translated from {translation.src} to {translation.dest}", url="https://cloud.google.com/translate/docs/languages"
+                                            text=f"Translated from {translation.src} to {translation.dest}", url="https://cloud.google.com/translate/docs/languages"
                                         )
                                     ],
                                 ]
@@ -51,5 +51,5 @@ async def left(client,message):
 		except :
 			print("error")
 	else:
-			 ms = await message.reply_text("You can Use This Command by using reply to message")
+			 ms = await message.reply_text("You can Use This Command by using reply to message.")
 			 await ms.delete()
