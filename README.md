@@ -49,7 +49,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy to Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/josprojects/tgmoviebot/tree/master">
+<a href="https://heroku.com/deploy?template=https://github.com/aanzal/zayn/tree/master">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
@@ -60,7 +60,7 @@ You can deploy this bot anywhere.
 <br/>
 
 <p align="left">
-<a href="https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fjosprojects%2Ftgmoviebot"
+<a href="https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Faanzal%2Fzayn"
 ">
      <img height="30px" src="https://railway.app/button.svg">
   </a>
