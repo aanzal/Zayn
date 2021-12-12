@@ -19,7 +19,7 @@ BOT_TOKEN = environ['BOT_TOKEN']
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
-PICS = (environ.get('PICS', 'https://img4.goodfon.com/original/1920x1200/6/e1/devushka-vzgliad-stul.jpg https://img4.goodfon.com/original/1920x1200/f/1c/jack-russell-model-litso-ruka-postel.jpg https://img4.goodfon.com/original/2560x1600/c/30/kirill-zakirov-model-poza-plate-nogi-kreslo-okno-stil.jpg https://img4.goodfon.com/original/1920x1200/f/4d/alexis-monroe-devushka-blondinka-krasotka-seksualnaia-privle.jpg https://img5.goodfon.com/original/2560x1600/d/a8/oleg-klimin-model-blondinka-krasotka-seksi-sidit-poza-figura.jpg')).split()
+PICS = (environ.get('PICS', 'https://telegra.ph/file/621a74d1af8cfbdff4790.jpg https://telegra.ph/file/8f3e2a5bc00f37225851b.jpg https://telegra.ph/file/9b78e86598c7d8eeb3717.jpg https://telegra.ph/file/60db926665f264f6428c0.jpg https://telegra.ph/file/3ef9472ab689f0f71e8c0.jpg https://telegra.ph/file/dc202376b1eced7cd03b7.jpg https://telegra.ph/file/9421ad04d35623ef463e4.jpg https://telegra.ph/file/5f3405b6767a24e7303bc.jpg https://telegra.ph/file/9e8c0c0089a0c479f57de.jpg https://telegra.ph/file/beee4e936a7ecb55af9ba.jpg https://telegra.ph/file/6ef3a486894fc625558c5.jpg')).split()
 
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
@@ -33,17 +33,17 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
-DATABASE_NAME = environ.get('DATABASE_NAME', "Dingdi")
+DATABASE_NAME = environ.get('DATABASE_NAME', "Zayn_Files")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'mizotelegram')
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'cinemaground')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "True")), True)
 IMDB = is_enabled((environ.get('IMDB', "True")), True)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), True)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "<code>{file_name}</code>\n\n<b>Size:</b> {file_size}\n\n{file_caption}\n\n<b>[© TVSeries & Movie Studio](https://t.me/joinchat/prE6ALN6x2hkY2E1)</b>")
-IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>🎬 Title:</b> <a href={url}>{title}</a>\n<b>📺 Type:</b> {kind}\n<b>📆 Release:</b> <a href={url}/releaseinfo>{release_date}</a>\n<b>🌟 Rating:</b> <a href={url}/ratings>{rating} / 10</a>\n(based on <code>{votes}</code> user ratings.)\n\n<b>📀 Runtime:</b> <code>{runtime} minutes</code>\n<b>🎭 Genres:</b> {genres}\n\n<b>☀️ Languages:</b> {languages}\n<b>🎛 Countries:</b> {countries}\n<b>🎥 Director:</b> {director}\n<b>📝 Writers:</b> {writer}\n\n<b><a href='https://t.me/joinchat/prE6ALN6x2hkY2E1'>© TVSeries & Movie Studio</a></b>")
+IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>🎬 Title :</b> <a href={url}>{title}</a>\n\n<b>📺 Type :</b> {kind}\n<b>📆 Release :</b> <a href={url}/releaseinfo>{release_date}</a>\n<b>🌟 Rating :</b> <a href={url}/ratings>{rating} / 10</a>\n(based on <code>{votes}</code> user ratings.)\n\n<b>📀 Runtime :</b> <code>{runtime} minutes</code>\n<b>🎭 Genres :</b> {genres}\n\n<b>☀️ Languages :</b> {languages}\n<b>🇮🇳 Countries :</b> {countries}\n<b>🎥 Director :</b> {director}\n<b>📝 Writers :</b> {writer}\n\n<a href='http://t.me/ZaynAndMillie'>𝗭𝗮𝘆𝗻 𝗨𝗽𝗱𝗮𝘁𝗲𝘀</a>")
 LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "False"), False)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
