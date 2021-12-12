@@ -18,11 +18,7 @@ async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [
             [
-                InlineKeyboardButton('updates', url='https://t.me/josprojects')
-            ],
-            [
-                InlineKeyboardButton('help', url=f"https://t.me/{temp.U_NAME}?start=help"),
-                InlineKeyboardButton('Close ✗', callback_data="close_data"),
+                InlineKeyboardButton('Help', url='http://t.me/xaynbot?start=help')
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -37,18 +33,13 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, Script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
-        buttons = [[
-            InlineKeyboardButton('Add me to your Chat', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('help', callback_data='help'),
-            InlineKeyboardButton('about', callback_data='about')
-            ],[
-            InlineKeyboardButton('search here movie', switch_inline_query_current_chat='')
-            ],[
-            InlineKeyboardButton('updates', url='https://t.me/josprojects'),
-            InlineKeyboardButton('movie club', url='https://t.me/+y53tWFUw6Q43NzE9')
-            ],[
-            InlineKeyboardButton('✗ Close the Menu ✗', callback_data='close_data')
+        buttons = [
+            [
+            InlineKeyboardButton('➕ Add Me To Your Group ➕', url='http://t.me/XaynBot?startgroup=true')
+            ],
+            [
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/ZaynAndMillie'),
+            InlineKeyboardButton('👣 Help', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -63,18 +54,18 @@ async def start(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
+            logger.error("Make sure XaynBot is admin in Forcesub channel")
             return
         btn = [
             [
                 InlineKeyboardButton(
-                    "Join Official Channel", url=invite_link.invite_link
+                    "Join Channel", url=invite_link.invite_link
                 )
             ]
         ]
 
         if message.command[1] != "subscribe":
-            btn.append([InlineKeyboardButton(" 🔄 Try Again 👈 Tap me 🥰", callback_data=f"checksub#{message.command[1]}")])
+            btn.append([InlineKeyboardButton("⟲ Try Again", callback_data=f"checksub#{message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
             text=Script.FORCESUB_TXT,
@@ -83,19 +74,14 @@ async def start(client, message):
             parse_mode="markdown"
             )
         return
-    if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        buttons = [[
-            InlineKeyboardButton('Add me to your Chat', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('help', callback_data='help'),
-            InlineKeyboardButton('about', callback_data='about')
-            ],[
-            InlineKeyboardButton('search here movie', switch_inline_query_current_chat='')
-            ],[
-            InlineKeyboardButton('updates', url='https://t.me/josprojects'),
-            InlineKeyboardButton('movie club', url='https://t.me/+y53tWFUw6Q43NzE9')
-            ],[
-            InlineKeyboardButton('✗ Close the Menu ✗', callback_data='close_data')
+    if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay"]:
+        buttons = [
+            [
+            InlineKeyboardButton('➕ Add Me To Your Group ➕', url='http://t.me/XaynBot?startgroup=true')
+            ],
+            [
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/ZaynAndMillie'),
+            InlineKeyboardButton('👣 Help', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -109,7 +95,7 @@ async def start(client, message):
     file_id = message.command[1]
     files_ = await get_file_details(file_id)
     if not files_:
-        return await message.reply('No such file exist.')
+        return await message.reply('**Try Asking your Movie at <a href=https://t.me/CinemaGround>Cinema Ground</a>\nI will filter your Movies there!\n\n<a href=https://t.me/ZaynAndMillie>𝗭𝗮𝘆𝗻</a>**')
     files = files_[0]
     title = files.file_name
     size=get_size(files.file_size)
@@ -129,7 +115,7 @@ async def start(client, message):
         )
                     
 
-@Client.on_message(filters.command('channel') & filters.user(ADMINS))
+@Client.on_message(filters.command('mychannel') & filters.user(ADMINS))
 async def channel_info(bot, message):
            
     """Send basic information of channel"""
@@ -140,7 +126,7 @@ async def channel_info(bot, message):
     else:
         raise ValueError("Unexpected type of CHANNELS")
 
-    text = '📑 **Indexed channels/groups**\n'
+    text = '✓ **Indexed Channels / Groups**\n'
     for channel in channels:
         chat = await bot.get_chat(channel)
         if chat.username:
@@ -148,7 +134,7 @@ async def channel_info(bot, message):
         else:
             text += '\n' + chat.title or chat.first_name
 
-    text += f'\n\n**Total:** {len(CHANNELS)}'
+    text += f'\n\n**Total :** {len(CHANNELS)}'
 
     if len(text) < 4096:
         await message.reply(text)
@@ -160,7 +146,7 @@ async def channel_info(bot, message):
         os.remove(file)
 
 
-@Client.on_message(filters.command('logs') & filters.user(ADMINS))
+@Client.on_message(filters.command('mylogs') & filters.user(ADMINS))
 async def log_file(bot, message):
     """Send log file"""
     try:
@@ -168,14 +154,14 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('delete') & filters.user(ADMINS))
+@Client.on_message(filters.command('dfile') & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
     reply = message.reply_to_message
     if reply and reply.media:
-        msg = await message.reply("Processing...⏳", quote=True)
+        msg = await message.reply("Processing...", quote=True)
     else:
-        await message.reply('Reply to file with /delete which you want to delete', quote=True)
+        await message.reply('Reply to file with /delete which you want to delete.', quote=True)
         return
 
     for file_type in ("document", "video", "audio"):
@@ -183,7 +169,7 @@ async def delete(bot, message):
         if media is not None:
             break
     else:
-        await msg.edit('This is not supported file format')
+        await msg.edit('This is not supported file format.')
         return
     
     file_id, file_ref = unpack_new_file_id(media.file_id)
@@ -192,7 +178,7 @@ async def delete(bot, message):
         '_id': file_id,
     })
     if result.deleted_count:
-        await msg.edit('File is successfully deleted from database')
+        await msg.edit('File is successfully deleted.')
     else:
         file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
         result = await Media.collection.delete_one({
@@ -201,7 +187,7 @@ async def delete(bot, message):
             'mime_type': media.mime_type
             })
         if result.deleted_count:
-            await msg.edit('File is successfully deleted from database')
+            await msg.edit('File is successfully deleted.')
         else:
             # files indexed before https://github.com/EvamariaTG/EvaMaria/commit/f3d2a1bcb155faf44178e5d7a685a1b533e714bf#diff-86b613edf1748372103e94cacff3b578b36b698ef9c16817bb98fe9ef22fb669R39 
             # have original file name.
@@ -211,20 +197,20 @@ async def delete(bot, message):
                 'mime_type': media.mime_type
             })
             if result.deleted_count:
-                await msg.edit('File is successfully deleted from database')
+                await msg.edit('File is successfully deleted.')
             else:
-                await msg.edit('File not found in database')
+                await msg.edit('File not found.')
 
 
-@Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
+@Client.on_message(filters.command('deleteallindexed') & filters.user(ADMINS))
 async def delete_all_index(bot, message):
     await message.reply_text(
-        'This will delete all indexed files.\nDo you want to continue??',
+        'This will delete all indexed files.\nDo you want to continue?',
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        text="✓ Yes", callback_data="autofilter_delete"
+                        text="Yes ✓", callback_data="autofilter_delete"
                     )
                 ],
                 [
