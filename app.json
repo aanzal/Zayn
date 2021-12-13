@@ -68,10 +68,12 @@
         },
         "DATABASE_URI": {
             "description": "mongoDB URI. Get this value from https://www.mongodb.com. For more help watch this video - https://youtu.be/nj-lJfkgb6w",
+            "value": "mongodb+srv://zayn:zayn@cluster0.vtim2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
             "required": true
         },
         "DATABASE_NAME": {
             "description": "Name of the database in mongoDB. For more help watch this video - https://youtu.be/nj-lJfkgb6w",
+            "value": "Zayn_Files",
             "required": false
         },
         "COLLECTION_NAME": {
