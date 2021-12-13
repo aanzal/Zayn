@@ -16,8 +16,6 @@ bs4
 imdbpy
 youtube-search-python==1.4.6
 youtube_search
-youtube-dl
-yt-dlp
 wget
 python-arq
 ffmpeg-python
